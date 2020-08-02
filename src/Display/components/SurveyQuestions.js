@@ -63,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// DOUBLE CHECK ON THIS PAGE PLS
+
 export default function SurveyQuestions(props) {
   const classes = useStyles();
   const [singleText, setSingleTextAnswer] = useState(props.question.answer);
@@ -105,7 +107,6 @@ export default function SurveyQuestions(props) {
           multiline
           rows={4}
           value={multiText}
-          C
           onChange={(e) => setMultiTextAnswer(e.target.value)}
         />
       </FormControl>

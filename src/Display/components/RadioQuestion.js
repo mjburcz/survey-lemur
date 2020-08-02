@@ -1,21 +1,11 @@
 import React from "react";
 import {
-  Card,
-  CardHeader,
-  CardContent,
-  Avatar,
   FormControl,
   FormControlLabel,
-  Typography,
-  TextField,
   RadioGroup,
   Radio,
-  Select,
-  MenuItem,
-  InputLabel,
   FormHelperText,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 export default function RadioQuestion(props) {
   return (

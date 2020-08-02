@@ -77,8 +77,6 @@ export default function ResponseDisplay(props) {
 
   let formattedDate = `${month}/${day}/${year}`;
 
-  console.log(props.response);
-
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -104,6 +102,7 @@ export default function ResponseDisplay(props) {
         </IconButton>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
+            {/* RIGHT HERE. LOOK HERE & ASSESS YOUR DECISIONS */}
             {props.response.answerSet.map((a, i) => (
               <div className={classes.questionanswer}>
                 <Typography

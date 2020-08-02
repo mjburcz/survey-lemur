@@ -1,17 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardHeader,
   CardContent,
   Avatar,
-  FormControl,
-  FormControlLabel,
   Typography,
-  TextField,
-  RadioGroup,
-  Radio,
-  Select,
-  MenuItem,
   InputLabel,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -76,7 +69,7 @@ export default function Question(props) {
   let answerType = props.question.answerType;
 
   let optionsDisplay = null;
-  // THIS IS THE TEXT DISPLAY
+
   if (answerType === "single-line") {
     optionsDisplay = (
       <SingleLineQuestion
@@ -91,7 +84,6 @@ export default function Question(props) {
         answerQuestion={props.answerQuestion}
       />
     );
-    // THIS IS THE OPTIONS DISPLAY
   } else if (answerType === "radio") {
     optionsDisplay = (
       <RadioQuestion

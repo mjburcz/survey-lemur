@@ -15,6 +15,7 @@ import {
   IconButton,
   Button,
   Tooltip,
+  MenuItem,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
@@ -25,13 +26,26 @@ import {
   DELETE_QUESTION_OPTION,
 } from "../../../Core/queries";
 
-// NEED TO GET ALL THIS JUNK OUT OF HERE AND SOMEWHERE ELSE.
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 600,
     maxWidth: 1500,
     display: "inline-block",
     alignContent: "center",
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  input: {
+    "& > *": {
+      width: "25ch",
+    },
+    margin: theme.spacing(1),
+    minWidth: 120,
   },
   avatar: {
     backgroundColor: "#009ca7",
@@ -40,15 +54,21 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     fontWeight: 800,
   },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
+  options: {
+    display: "inline-block",
+    marginBottom: ".5em",
   },
-  expandOpen: {
-    transform: "rotate(180deg)",
+  btn: {
+    marginBottom: 10,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  fab: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+    alignContent: "center",
   },
 }));
 
@@ -117,7 +137,7 @@ export default function QuestionEdit(props) {
       <div>
         {questionOptions.map((o) => (
           <div key={o.id}>
-            <FormControl className={classes.option}>
+            <FormControl className={classes.options}>
               <TextField
                 type="text"
                 value={o.text}
@@ -192,7 +212,6 @@ export default function QuestionEdit(props) {
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="type">Type</InputLabel>
               <Select
-                native
                 value={questionType}
                 onChange={(e) => setQuestionType(e.target.value)}
                 label="Type"
@@ -201,11 +220,10 @@ export default function QuestionEdit(props) {
                   id: "type",
                 }}
               >
-                <option aria-label="None" value="" />
-                <option value="single-line"> Single Line</option>
-                <option value="multi-line"> Multi Line</option>
-                <option value="radio"> Radio Button</option>
-                <option value="dropdown"> Drop Down</option>
+                <MenuItem value="single-line">Single Line</MenuItem>
+                <MenuItem value="multi-line">Multi Line</MenuItem>
+                <MenuItem value="radio">Radio Button</MenuItem>
+                <MenuItem value="dropdown">Drop Down</MenuItem>
               </Select>
             </FormControl>
             {optionEditing}

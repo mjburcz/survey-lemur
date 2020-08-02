@@ -12,12 +12,14 @@ import {
   Checkbox,
   IconButton,
   Tooltip,
+  MenuItem,
+  InputLabel,
+  Select,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
 
-// NEED TO GET ALL THIS JUNK OUT OF HERE AND SOMEWHERE ELSE.
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 600,
@@ -56,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
   pos: {
     marginBottom: 12,
   },
-  checked: {},
   fab: {
     "& > *": {
       margin: theme.spacing(1),
@@ -126,10 +127,31 @@ export default function QuestionDisplay(props) {
                 disabled
                 id="standard-disabled"
                 label="Question"
+                type="text"
                 value={props.question.text}
               />
             </FormControl>
             <FormControl className={classes.formControl} disabled>
+        <InputLabel id="type">Type</InputLabel>
+        <Select
+          labelId="type"
+          id="type"
+          value={props.question.answerType}
+                label="Type"
+                inputProps={{
+                  name: "type",
+                  id: "type",
+                }}
+              >
+                <MenuItem value="" aria-label="None"> </MenuItem>
+                <MenuItem value="single-line">Single Line</MenuItem>
+                <MenuItem value="multi-line">Multi Line</MenuItem>
+                <MenuItem value="radio">Radio Button</MenuItem>
+                <MenuItem value="dropdown">Drop Down</MenuItem>
+              </Select>
+            </FormControl>
+            <br/>
+            {/* <FormControl className={classes.formControl} disabled>
               <TextField
                 disabled
                 id="standard-disabled"
@@ -137,7 +159,7 @@ export default function QuestionDisplay(props) {
                 value={props.question.answerType}
               />
             </FormControl>
-            <br />
+            <br /> */}
             {optionsDisplay}
             <FormControlLabel
               disabled

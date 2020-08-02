@@ -33,7 +33,7 @@ export default function StickyFooter() {
     <div className={classes.root}>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="h6" color="secondary">Survey's for Monkeys</Typography>
+          <Typography variant="h6" color="secondary">Survey Lemur</Typography>
           <Copyright />
         </Container>
       </footer>
