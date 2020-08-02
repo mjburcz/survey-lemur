@@ -7,16 +7,21 @@ import {
   Avatar,
   IconButton,
   Typography,
+  Grid,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
+import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 600,
-    maxWidth: 1500,
     display: "inline-block",
     alignContent: "center",
+    width: 600,
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: 345,
+    },
   },
   formControl: {
     margin: theme.spacing(1),
@@ -36,22 +41,28 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#009ca7",
   },
   title: {
-    fontSize: 20,
+    fontSize: "1.2rem",
     fontWeight: 800,
   },
   questionanswer: {
-    paddingLeft: "4em",
+    paddingLeft: "1em",
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: "0em",
+    },
+  },
+  grid: {
+    display: "-webkit-box",
+  },
+  icon: {
+    paddingRight: ".3em"
   },
   question: {
-    display: "flex",
-    fontSize: 20,
+    fontSize: "1.2rem",
     color: "#282c34",
   },
   answer: {
-    display: "flex",
-    fontSize: 18,
-    color: "#363b46",
-    paddingLeft: "1em",
+    fontSize: "1.05rem",
+    color: "#282c34",
   },
   expand: {
     transform: "rotate(0deg)",
@@ -105,23 +116,24 @@ export default function ResponseDisplay(props) {
             {/* RIGHT HERE. LOOK HERE & ASSESS YOUR DECISIONS */}
             {props.response.answerSet.map((a, i) => (
               <div className={classes.questionanswer}>
-                <Typography
-                  component="h6"
-                  variant="h5"
-                  className={classes.question}
-                >
-                  Question:{" "}
-                  {a.question !== null && a.question !== undefined
-                    ? a.question.text
-                    : null}
-                </Typography>
-                <Typography
-                  component="h6"
-                  variant="h6"
-                  className={classes.answer}
-                >
-                  Answer: {a.text}
-                </Typography>
+               <Grid className={classes.grid}>
+                  <ChatBubbleOutlineOutlinedIcon color="primary" className={classes.icon} />
+                  <Typography className={classes.question} component="h4" variant="h4">
+                    {a.question !== null && a.question !== undefined
+                      ? a.question.text
+                      : null}
+                  </Typography>
+                </Grid>
+                <Grid className={classes.grid}>
+                  <CommentOutlinedIcon color="secondary" className={classes.icon} />
+                  <Typography
+                    component="h5"
+                    variant="h5"
+                    className={classes.answer}
+                  >
+                    {a.text}
+                  </Typography>
+                </Grid>
                 <br />
               </div>
             ))}

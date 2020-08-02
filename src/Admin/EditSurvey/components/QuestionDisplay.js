@@ -22,10 +22,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 600,
-    maxWidth: 1500,
     display: "inline-block",
     alignContent: "center",
+    width: 600,
+    [theme.breakpoints.down("sm")] : {
+    maxWidth: 345
+    }
   },
   formControl: {
     margin: theme.spacing(1),
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#009ca7",
   },
   title: {
-    fontSize: 20,
+    fontSize: "1.2rem",
     fontWeight: 800,
   },
   options: {
@@ -151,15 +153,6 @@ export default function QuestionDisplay(props) {
               </Select>
             </FormControl>
             <br/>
-            {/* <FormControl className={classes.formControl} disabled>
-              <TextField
-                disabled
-                id="standard-disabled"
-                label="Type"
-                value={props.question.answerType}
-              />
-            </FormControl>
-            <br /> */}
             {optionsDisplay}
             <FormControlLabel
               disabled

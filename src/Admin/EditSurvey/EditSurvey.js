@@ -15,43 +15,7 @@ import {
   UPDATE_QUESTION_OPTION,
 } from "../../Core/queries";
 
-// NEED TO GET ALL THIS JUNK OUT OF HERE AND SOMEWHERE ELSE.
 const useStyles = makeStyles((theme) => ({
-  root: {
-    minWidth: 600,
-    maxWidth: 1000,
-    display: "inline-block",
-    alignContent: "center",
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  input: {
-    "& > *": {
-      width: "25ch",
-    },
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  avatar: {
-    backgroundColor: "#009ca7",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 800,
-  },
-  option: {},
-  btn: {
-    marginBottom: 10,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  checked: {},
   fab: {
     "& > *": {
       margin: theme.spacing(1),

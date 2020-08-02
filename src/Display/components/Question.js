@@ -15,10 +15,12 @@ import SingleLineQuestion from "./SingleLineQuestion";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 600,
-    maxWidth: 1500,
     display: "inline-block",
     alignContent: "center",
+    width: 600,
+    [theme.breakpoints.down("sm")] : {
+    maxWidth: 345
+    }
   },
   formControl: {
     margin: theme.spacing(1),
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#5dbcd2",
   },
   title: {
-    fontSize: 20,
+    fontSize: "1.2rem",
     display: "flex",
   },
   option: {
