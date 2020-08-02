@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 
 // GRAPHQL API ENDPOINT
-const endpoint = 'http://survey-system.thomasbowlin.com/graphql/';
+const endpoint = "http://survey-system.thomasbowlin.com/graphql/";
 
 export const dataCall = (call, variables = {}) => {
-    return axios({
-        url: endpoint,
-        method: 'POST',
-        data: {
-            query: call,
-            variables
-        }
-    });
-}
+  return axios({
+    url: endpoint,
+    method: "POST",
+    data: {
+      query: call,
+      variables,
+    },
+  });
+};

@@ -16,7 +16,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-// NEED TO GET ALL THIS JUNK OUT OF HERE AND SOMEWHERE ELSE.
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 600,
@@ -70,15 +69,13 @@ export default function SurveyQuestions(props) {
   const [multiText, setMultiTextAnswer] = useState(props.question.answer);
   const [radioText, setRadioeTextAnswer] = useState(props.question.answer);
   const [dropText, setDropTextAnswer] = useState(props.question.answer);
-  
-
 
   function saveAnswers() {
     props.updateQuestion(
-        singleText,
-        multiText,
-        radioText,
-        dropText,
+      singleText,
+      multiText,
+      radioText,
+      dropText,
       props.question.id
     );
   }
@@ -90,14 +87,13 @@ export default function SurveyQuestions(props) {
   if (props.question.type === "single-line") {
     optionsDisplay = (
       <FormControl className={classes.input}>
-        <TextField 
-        id="standard-basic" 
-        label="Answer" 
-        type="text" 
-        value={singleText}
-        onChange={(e) => setSingleTextAnswer(e.target.value)}
+        <TextField
+          id="standard-basic"
+          label="Answer"
+          type="text"
+          value={singleText}
+          onChange={(e) => setSingleTextAnswer(e.target.value)}
         />
-
       </FormControl>
     );
   } else if (answerType === "multi-line") {

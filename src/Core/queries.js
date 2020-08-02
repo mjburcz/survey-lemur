@@ -26,7 +26,7 @@ export const ADD_NEW_QUESTION = `mutation{
             }
         }
     }
-}`
+}`;
 
 export const DELETE_QUESTION = `mutation{
     deleteQuestion(id: $id) {
@@ -34,7 +34,7 @@ export const DELETE_QUESTION = `mutation{
             text
         }
     }
-}`
+}`;
 
 export const UPDATE_QUESTION = `mutation{
     updateQuestion(id: $id, answerType: $answerType, order: $order, required: $required, text: $text) {
@@ -42,7 +42,7 @@ export const UPDATE_QUESTION = `mutation{
             id
         }
     }
-}`
+}`;
 
 export const ADD_QUESTION_OPTION = `mutation{
     createQuestionOption(questionId: $questionId) {
@@ -51,7 +51,7 @@ export const ADD_QUESTION_OPTION = `mutation{
             text
         }
     }
-}`
+}`;
 
 export const UPDATE_QUESTION_OPTION = `mutation{
     updateQuestionOption(optionId: $optionId, text: $text) {
@@ -59,7 +59,7 @@ export const UPDATE_QUESTION_OPTION = `mutation{
             id
         }
     }
-}`
+}`;
 
 export const DELETE_QUESTION_OPTION = `mutation{
     deleteQuestionOption(optionId: $optionId) {
@@ -67,7 +67,7 @@ export const DELETE_QUESTION_OPTION = `mutation{
             text
         }
     }
-}`
+}`;
 
 export const CREATE_RESPONSE = `mutation{
     createResponse {
@@ -76,7 +76,7 @@ export const CREATE_RESPONSE = `mutation{
             submitDate
         }
     }
-}`
+}`;
 
 export const CREATE_ANSWER = `mutation{
     createAnswer(questionId: $questionId, responseId: $responseId, text: $text) {
@@ -84,7 +84,7 @@ export const CREATE_ANSWER = `mutation{
             id
         }
     }
-}`
+}`;
 
 export const GET_RESPONSES = `query {
     allResponses {
@@ -99,5 +99,4 @@ export const GET_RESPONSES = `query {
         }
       }
     }
-}`
-
+}`;

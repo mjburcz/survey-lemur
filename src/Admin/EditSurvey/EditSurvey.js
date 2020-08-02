@@ -7,7 +7,13 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "@material-ui/core/Tooltip";
 import { dataCall } from "../../Core/DataService";
-import { ADD_NEW_QUESTION, DELETE_QUESTION, GET_ALL_QUESTIONS, UPDATE_QUESTION, UPDATE_QUESTION_OPTION } from "../../Core/queries";
+import {
+  ADD_NEW_QUESTION,
+  DELETE_QUESTION,
+  GET_ALL_QUESTIONS,
+  UPDATE_QUESTION,
+  UPDATE_QUESTION_OPTION,
+} from "../../Core/queries";
 
 // NEED TO GET ALL THIS JUNK OUT OF HERE AND SOMEWHERE ELSE.
 const useStyles = makeStyles((theme) => ({
@@ -51,12 +57,12 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
     alignContent: "center",
-    position: 'initial'
+    position: "initial",
   },
   stay: {
-      paddingBottom: '1em',
-      marginBottom: '1em'
-  }
+    paddingBottom: "1em",
+    marginBottom: "1em",
+  },
 }));
 
 export default function EditSurvey() {
@@ -65,8 +71,9 @@ export default function EditSurvey() {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    dataCall(GET_ALL_QUESTIONS)
-    .then(r => setQuestions(r.data.data.allQuestions));
+    dataCall(GET_ALL_QUESTIONS).then((r) =>
+      setQuestions(r.data.data.allQuestions)
+    );
   }, []);
 
   function updateQuestion(text, type, required, options, id) {
@@ -85,20 +92,24 @@ export default function EditSurvey() {
     };
     let order = copiedQuestions[index].order;
 
-    dataCall(UPDATE_QUESTION
-      .replace("$id", id)
-      .replace("$text", '"' + text +'"')
-      .replace("$required", required)
-      .replace("$answerType", '"' + type + '"')
-      .replace("$order", order))
+    dataCall(
+      UPDATE_QUESTION.replace("$id", id)
+        .replace("$text", '"' + text + '"')
+        .replace("$required", required)
+        .replace("$answerType", '"' + type + '"')
+        .replace("$order", order)
+    );
 
-  if (type === "radio" || type === "dropdown") {
-      options.forEach(o => {
-          dataCall(UPDATE_QUESTION_OPTION
-              .replace('$optionId', o.id)
-              .replace('$text', '"' + o.text + '"'))
+    if (type === "radio" || type === "dropdown") {
+      options.forEach((o) => {
+        dataCall(
+          UPDATE_QUESTION_OPTION.replace("$optionId", o.id).replace(
+            "$text",
+            '"' + o.text + '"'
+          )
+        );
       });
-  }
+    }
 
     setQuestions(copiedQuestions);
   }
@@ -117,35 +128,35 @@ export default function EditSurvey() {
   }
 
   function addNewQuestion() {
-    dataCall(ADD_NEW_QUESTION)
-    .then(r => {
-        setQuestions([
-            ...questions,
-            {
-              ...r.data.data.createQuestion.question,
-              editing: true
-            }
-        ]);
-    }); 
+    dataCall(ADD_NEW_QUESTION).then((r) => {
+      setQuestions([
+        ...questions,
+        {
+          ...r.data.data.createQuestion.question,
+          editing: true,
+        },
+      ]);
+    });
   }
 
   function deleteQuestion(id) {
     dataCall(DELETE_QUESTION.replace("$id", id));
 
     let copiedQuestions = [...questions];
-    let index = copiedQuestions.findIndex(q => q.id === id);
+    let index = copiedQuestions.findIndex((q) => q.id === id);
     copiedQuestions.splice(index, 1);
 
     copiedQuestions.forEach((e, i) => {
       let newOrder = i + 1;
 
       e.order = newOrder;
-      dataCall(UPDATE_QUESTION
-          .replace("$id", e.id)
-          .replace("$text", '"' + e.text +'"')
+      dataCall(
+        UPDATE_QUESTION.replace("$id", e.id)
+          .replace("$text", '"' + e.text + '"')
           .replace("$required", e.required)
           .replace("$answerType", '"' + e.answerType + '"')
-          .replace("$order", newOrder))
+          .replace("$order", newOrder)
+      );
     });
 
     setQuestions(copiedQuestions);
@@ -176,12 +187,13 @@ export default function EditSurvey() {
       let newOrder = i + 1;
 
       e.order = newOrder;
-      dataCall(UPDATE_QUESTION
-          .replace("$id", e.id)
-          .replace("$text", '"' + e.text +'"')
+      dataCall(
+        UPDATE_QUESTION.replace("$id", e.id)
+          .replace("$text", '"' + e.text + '"')
           .replace("$required", e.required)
           .replace("$answerType", '"' + e.answerType + '"')
-          .replace("$order", newOrder))
+          .replace("$order", newOrder)
+      );
     });
 
     setQuestions(copiedQuestions);
@@ -214,17 +226,17 @@ export default function EditSurvey() {
           </Droppable>
         </DragDropContext>
       </div>
-      <div >
+      <div>
         <br />
         <Tooltip title="Add Question" placement="top">
-        <Fab
-          className={classes.fab}
-          color="primary"
-          aria-label="add"
-          onClick={(r) => addNewQuestion(r)}
-        >
-          <AddIcon />
-        </Fab>
+          <Fab
+            className={classes.fab}
+            color="primary"
+            aria-label="add"
+            onClick={(r) => addNewQuestion(r)}
+          >
+            <AddIcon />
+          </Fab>
         </Tooltip>
       </div>
     </div>

@@ -103,7 +103,6 @@ function SurveyResults() {
   return (
     <div>
       <h1>Survey Results</h1>
-      <p>Here are the survey results. You're crushin it!</p>
       {responses.map((r) => (
         <div key={r.id}>
           <ResponseDisplay response={r} />

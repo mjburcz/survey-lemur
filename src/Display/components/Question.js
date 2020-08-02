@@ -15,10 +15,10 @@ import {
   InputLabel,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import DropdownQuestion from './DropdownQuestion';
-import MultiLineQuestion from './MultiLineQuestion';
-import RadioQuestion from './RadioQuestion';
-import SingleLineQuestion from './SingleLineQuestion';
+import DropdownQuestion from "./DropdownQuestion";
+import MultiLineQuestion from "./MultiLineQuestion";
+import RadioQuestion from "./RadioQuestion";
+import SingleLineQuestion from "./SingleLineQuestion";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,8 +66,8 @@ const useStyles = makeStyles((theme) => ({
     alignContent: "center",
   },
   required: {
-    color: 'red'
-  }
+    color: "red",
+  },
 }));
 
 export default function Question(props) {
@@ -79,20 +79,32 @@ export default function Question(props) {
   // THIS IS THE TEXT DISPLAY
   if (answerType === "single-line") {
     optionsDisplay = (
-      <SingleLineQuestion question={props.question} answerQuestion={props.answerQuestion} />
+      <SingleLineQuestion
+        question={props.question}
+        answerQuestion={props.answerQuestion}
+      />
     );
   } else if (answerType === "multi-line") {
     optionsDisplay = (
-      <MultiLineQuestion question={props.question} answerQuestion={props.answerQuestion} />
+      <MultiLineQuestion
+        question={props.question}
+        answerQuestion={props.answerQuestion}
+      />
     );
     // THIS IS THE OPTIONS DISPLAY
   } else if (answerType === "radio") {
     optionsDisplay = (
-      <RadioQuestion question={props.question} answerQuestion={props.answerQuestion} />
+      <RadioQuestion
+        question={props.question}
+        answerQuestion={props.answerQuestion}
+      />
     );
   } else if (answerType === "dropdown") {
     optionsDisplay = (
-      <DropdownQuestion question={props.question} answerQuestion={props.answerQuestion} />
+      <DropdownQuestion
+        question={props.question}
+        answerQuestion={props.answerQuestion}
+      />
     );
   }
 
@@ -108,7 +120,9 @@ export default function Question(props) {
           title={
             <Typography component="h3" variant="h3" className={classes.title}>
               {props.question.text}
-              {props.question.required ? (<InputLabel required={true} className={classes.required} />) : (null)}
+              {props.question.required ? (
+                <InputLabel required={true} className={classes.required} />
+              ) : null}
             </Typography>
           }
         />

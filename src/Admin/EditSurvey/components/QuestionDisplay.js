@@ -11,7 +11,7 @@ import {
   TextField,
   Checkbox,
   IconButton,
-  Tooltip
+  Tooltip,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -68,7 +68,10 @@ const useStyles = makeStyles((theme) => ({
 export default function QuestionDisplay(props) {
   const classes = useStyles();
   let optionsDisplay = null;
-  if (props.question.answerType === "radio" || props.question.answerType === "dropdown") {
+  if (
+    props.question.answerType === "radio" ||
+    props.question.answerType === "dropdown"
+  ) {
     optionsDisplay = props.question.questionoptionSet.map((o) => (
       <div key={o.id}>
         <FormControl className={classes.options}>
@@ -90,23 +93,23 @@ export default function QuestionDisplay(props) {
           }
           action={
             <CardActions>
-               <Tooltip title="Edit" placement="bottom">
-              <IconButton
-                color="secondary"
-                aria-label="Edit"
-                onClick={() => props.toggleEditing()}
-              >
-                <EditIcon />
-              </IconButton>
+              <Tooltip title="Edit" placement="bottom">
+                <IconButton
+                  color="secondary"
+                  aria-label="Edit"
+                  onClick={() => props.toggleEditing()}
+                >
+                  <EditIcon />
+                </IconButton>
               </Tooltip>
               <Tooltip title="Delete" placement="bottom">
-              <IconButton
-                className="MuiIconButton-colorTertiary"
-                aria-label="Delete"
-                onClick={() => props.deleteQuestion(props.question.id)}
-              >
-                <DeleteIcon />
-              </IconButton>
+                <IconButton
+                  className="MuiIconButton-colorTertiary"
+                  aria-label="Delete"
+                  onClick={() => props.deleteQuestion(props.question.id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
               </Tooltip>
             </CardActions>
           }

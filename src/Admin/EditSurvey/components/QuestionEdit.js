@@ -19,9 +19,11 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { makeStyles } from "@material-ui/core/styles";
-import { dataCall } from '../../../Core/DataService';
-import { ADD_QUESTION_OPTION, DELETE_QUESTION_OPTION } from '../../../Core/queries';
-
+import { dataCall } from "../../../Core/DataService";
+import {
+  ADD_QUESTION_OPTION,
+  DELETE_QUESTION_OPTION,
+} from "../../../Core/queries";
 
 // NEED TO GET ALL THIS JUNK OUT OF HERE AND SOMEWHERE ELSE.
 const useStyles = makeStyles((theme) => ({
@@ -39,14 +41,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 800,
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
 }));
 
@@ -54,8 +56,12 @@ export default function QuestionEdit(props) {
   const classes = useStyles();
   const [questionText, setQuestionText] = useState(props.question.text);
   const [questionType, setQuestionType] = useState(props.question.answerType);
-  const [questionRequired, setQuestionRequired] = useState(props.question.required);
-  const [questionOptions, setQuestionOptions] = useState(props.question.questionoptionSet);
+  const [questionRequired, setQuestionRequired] = useState(
+    props.question.required
+  );
+  const [questionOptions, setQuestionOptions] = useState(
+    props.question.questionoptionSet
+  );
 
   function saveEdit() {
     props.updateQuestion(
@@ -68,23 +74,24 @@ export default function QuestionEdit(props) {
   }
 
   function addNewOption() {
-    dataCall(ADD_QUESTION_OPTION
-      .replace('$questionId', props.question.id))
-      .then(r => {
-          setQuestionOptions([
-              ...questionOptions,
-              r.data.data.createQuestionOption.QuestionOption
-          ]);
-      });
+    dataCall(
+      ADD_QUESTION_OPTION.replace("$questionId", props.question.id)
+    ).then((r) => {
+      setQuestionOptions([
+        ...questionOptions,
+        r.data.data.createQuestionOption.QuestionOption,
+      ]);
+    });
   }
 
   function deleteOption(id) {
     let copiedOptions = [...questionOptions];
 
-    let index = copiedOptions.findIndex(o => o.id === id);
+    let index = copiedOptions.findIndex((o) => o.id === id);
 
-    dataCall(DELETE_QUESTION_OPTION
-        .replace('$optionId', copiedOptions[index].id));
+    dataCall(
+      DELETE_QUESTION_OPTION.replace("$optionId", copiedOptions[index].id)
+    );
 
     copiedOptions.splice(index, 1);
 
@@ -142,7 +149,7 @@ export default function QuestionEdit(props) {
       </div>
     );
   }
-  
+
   return (
     <div>
       <Card className={classes.root}>
