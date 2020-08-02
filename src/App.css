@@ -1,0 +1,125 @@
+.App {
+  text-align: center;
+  flex-grow: 1;
+  font-family: "Bookman Old Style" !important;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.logo {
+  max-height: 10em;
+  max-width: 10em;
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: left;
+}
+
+/* OVERRIDES FOR MUI */
+.nav-item {
+  color: #eee !important;
+  margin-right: 1em !important;
+}
+
+.nav-item:hover {
+  border-bottom: 1px;
+  border-color: #662d91
+}
+
+.MuiInputBase-input.Mui-disabled {
+  opacity: .6 !important;
+  color: black !important;
+}
+
+.MuiButton-root {
+  font-weight: 800 !important;
+  font-family: "Bookman Old Style" !important;
+}
+
+.MuiTypography-h1 {
+  font-family: "Bookman Old Style" !important;
+}
+.MuiTypography-h2 {
+  font-family: "Bookman Old Style" !important;
+}
+.MuiTypography-h3 {
+  font-family: "Bookman Old Style" !important;
+}
+.MuiTypography-h4 {
+  font-family: "Bookman Old Style" !important;
+}
+.MuiTypography-h5 {
+  font-family: "Bookman Old Style" !important;
+}
+.MuiTypography-h6 {
+  font-family: "Bookman Old Style" !important;
+}
+
+.MuiInputBase-input {
+  font-family: "Bookman Old Style" !important;
+}
+
+.MuiFormLabel-root {
+  font-family: "Bookman Old Style" !important;
+}
+
+.MuiAvatar-root {
+  font-family: "Bookman Old Style" !important;
+}
+
+.MuiTypography-root {
+  font-family: "Bookman Old Style" !important;
+}
+
+.MuiTooltip-root {
+  font-family: "Bookman Old Style" !important;
+}
+
+.MuiAppBar-colorPrimary {
+  background-color: #222425 !important;
+}
+
+.MuiIconButton-colorTertiary {
+  color: #dc425b !important;
+}
+
+.MuiButton-colorTertiary {
+  color: #dc425b !important;
+  border-color: #efaab5 !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 8s alternate-reverse;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #2d2f30;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(30deg);
+  }
+  to {
+    transform: rotate(-30deg);
+  }
+}
