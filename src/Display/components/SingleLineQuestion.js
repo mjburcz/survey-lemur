@@ -21,7 +21,6 @@ export default function SingleLineQuestion(props) {
     <div>
       <FormControl className={classes.input}>
         <TextField
-          id="standard-basic"
           label="Answer"
           type="text"
           value={props.question.answer}

@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#009ca7",
   },
   title: {
-    fontSize: "1.2rem",
+    fontSize: 20,
     fontWeight: 800,
   },
   options: {
@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
   pos: {
     marginBottom: 12,
   },
+  checked: {},
   fab: {
     "& > *": {
       margin: theme.spacing(1),
@@ -78,12 +79,8 @@ export default function QuestionEdit(props) {
   const classes = useStyles();
   const [questionText, setQuestionText] = useState(props.question.text);
   const [questionType, setQuestionType] = useState(props.question.answerType);
-  const [questionRequired, setQuestionRequired] = useState(
-    props.question.required
-  );
-  const [questionOptions, setQuestionOptions] = useState(
-    props.question.questionoptionSet
-  );
+  const [questionRequired, setQuestionRequired] = useState(props.question.required);
+  const [questionOptions, setQuestionOptions] = useState(props.question.questionoptionSet);
 
   function saveEdit() {
     props.updateQuestion(

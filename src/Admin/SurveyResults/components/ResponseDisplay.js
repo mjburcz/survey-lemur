@@ -113,9 +113,8 @@ export default function ResponseDisplay(props) {
         </IconButton>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            {/* RIGHT HERE. LOOK HERE & ASSESS YOUR DECISIONS */}
             {props.response.answerSet.map((a, i) => (
-              <div className={classes.questionanswer}>
+              <div key={a.id} className={classes.questionanswer}>
                <Grid className={classes.grid}>
                   <ChatBubbleOutlineOutlinedIcon color="primary" className={classes.icon} />
                   <Typography className={classes.question} component="h4" variant="h4">

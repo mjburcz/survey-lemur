@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Question from "./components/Question";
-import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { dataCall } from "../Core/DataService";
 import {
-  GET_ALL_QUESTIONS,
-  CREATE_RESPONSE,
-  CREATE_ANSWER,
-} from "../Core/queries";
+  Button,
+  Typography
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { dataCall } from '../Core/DataService';
+import { GET_ALL_QUESTIONS, CREATE_RESPONSE, CREATE_ANSWER } from '../Core/queries';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    minWidth: 600,
+    maxWidth: 1000,
     display: "inline-block",
     alignContent: "center",
-    width: 600,
-    [theme.breakpoints.down("sm")] : {
-    maxWidth: 345
-    }
   },
   formControl: {
     margin: theme.spacing(1),
@@ -36,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#5dbcd2",
   },
   title: {
-    fontSize: "1.2rem",
+    fontSize: 20,
     fontWeight: 800,
   },
   option: {},
@@ -52,12 +49,16 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
     alignContent: "center",
-    position: "initial",
+    position: 'initial'
+  },
+  success: {
+    color: "#dc425b"
   },
   stay: {
-    paddingBottom: "1em",
-    marginBottom: "1em",
+    paddingBottom: '1em',
+    marginBottom: '1em'
   },
+
 }));
 
 export default function TakeSurvey() {
@@ -65,10 +66,11 @@ export default function TakeSurvey() {
 
   const [questions, setQuestions] = useState([]);
 
+  const [submitted, setSubmitted] = useState(false);
+
   useEffect(() => {
-    dataCall(GET_ALL_QUESTIONS).then((r) =>
-      setQuestions(r.data.data.allQuestions)
-    );
+    dataCall(GET_ALL_QUESTIONS)
+      .then(r => setQuestions(r.data.data.allQuestions));
   }, []);
 
   function answerQuestion(answer, id) {
@@ -91,11 +93,8 @@ export default function TakeSurvey() {
     let currentQuestions = [...questions];
 
     let errors = false;
-    currentQuestions.forEach((q) => {
-      if (
-        q.required &&
-        (q.answer === undefined || q.answer === null || q.answer === "")
-      ) {
+    currentQuestions.forEach(q => {
+      if (q.required && (q.answer === undefined || q.answer === null || q.answer === "")) {
         q.errorMessage = "This question is required";
         q.validationError = true;
         errors = true;
@@ -109,43 +108,55 @@ export default function TakeSurvey() {
       setQuestions(currentQuestions);
       return;
     } else {
-      dataCall(CREATE_RESPONSE).then((r) => {
-        questions.forEach((q) => {
-          dataCall(
-            CREATE_ANSWER.replace(
-              "$responseId",
-              r.data.data.createResponse.Response.id
-            )
-              .replace("$questionId", q.id)
-              .replace("$text", '"' + q.answer + '"')
-          );
-        });
-      });
+      setSubmitted(true);
+      dataCall(CREATE_RESPONSE)
+        .then(r => {
+          questions.forEach(q => {
+            dataCall(CREATE_ANSWER
+              .replace('$responseId', r.data.data.createResponse.Response.id)
+              .replace('$questionId', q.id)
+              .replace('$text', '"' + q.answer + '"'));
+          })
+        })
     }
   }
 
-  let questionsDisplay = questions.map((q) => (
-    <div key={q.id}>
-      {<Question question={q} answerQuestion={answerQuestion} />}
-    </div>
-  ));
-
-  return (
-    <div>
-      <h1>Survey</h1>
-      <div className={classes.stay}>{questionsDisplay}</div>
+  if (submitted) {
+    return (
       <div>
+        <h1>Survey</h1>
         <br />
-        <Button
-          type="submit"
-          variant="contained"
-          className={classes.btn}
-          color="primary"
-          onClick={() => submitSurvey()}
-        >
-          Save
-        </Button>
+        <Typography component="h5" variant="h5" className="primary">
+          Your survey has been successfully submitted! Thank you!
+        </Typography>
       </div>
-    </div>
-  );
+    );
+  } else {
+    let questionsDisplay = questions.map((q) => (
+      <div key={q.id}>
+        {<Question question={q} answerQuestion={answerQuestion} />}
+      </div>
+    ));
+
+    return (
+      <div>
+        <h1>Survey</h1>
+        <div className={classes.stay}>
+          {questionsDisplay}
+        </div>
+        <div>
+          <br />
+          <Button
+            type="submit"
+            variant="contained"
+            className={classes.btn}
+            color="primary"
+            onClick={() => submitSurvey()}
+          >
+            Save
+        </Button>
+        </div>
+      </div>
+    );
+  }
 }
