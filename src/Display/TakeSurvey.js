@@ -10,10 +10,12 @@ import { GET_ALL_QUESTIONS, CREATE_RESPONSE, CREATE_ANSWER } from '../Core/queri
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 600,
-    maxWidth: 1000,
     display: "inline-block",
     alignContent: "center",
+    width: 600,
+    [theme.breakpoints.down("sm")] : {
+    maxWidth: 345
+    }
   },
   formControl: {
     margin: theme.spacing(1),
@@ -88,8 +90,6 @@ export default function TakeSurvey() {
   }
 
   function submitSurvey() {
-    console.log(questions);
-
     let currentQuestions = [...questions];
 
     let errors = false;
@@ -126,8 +126,8 @@ export default function TakeSurvey() {
       <div>
         <h1>Survey</h1>
         <br />
-        <Typography component="h5" variant="h5" className="primary">
-          Your survey has been successfully submitted! Thank you!
+        <Typography component="h5" variant="h5">
+          <p className="primary">Your survey has been successfully submitted! Thank you!</p>
         </Typography>
       </div>
     );
@@ -153,7 +153,7 @@ export default function TakeSurvey() {
             color="primary"
             onClick={() => submitSurvey()}
           >
-            Save
+            Submit
         </Button>
         </div>
       </div>

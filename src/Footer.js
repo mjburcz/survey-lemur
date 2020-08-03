@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "75vh",
+    position: "static"
   },
   footer: {
     padding: theme.spacing(1, 1),

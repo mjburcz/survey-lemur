@@ -38,11 +38,6 @@
   margin-right: 1em !important;
 }
 
-.nav-item:hover {
-  border-bottom: 1px;
-  border-color: #662d91
-}
-
 .MuiInputBase-input.Mui-disabled {
   opacity: .6 !important;
   color: black !important;

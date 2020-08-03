@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
   },
   avatar: {
-    backgroundColor: "#5dbcd2",
+    backgroundColor: "#009ca7",
   },
   title: {
     fontSize: "1.2rem",

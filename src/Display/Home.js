@@ -11,8 +11,6 @@ function Home() {
           src={logo}
           className="App-logo"
           alt="logo"
-          component={Link}
-          to="/survey"
         />
         <br />
         <Button
