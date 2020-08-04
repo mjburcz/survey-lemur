@@ -28,26 +28,12 @@ const themeA = createMuiTheme({
       }
     },
     //  PINK
-    default: {
-      light: "#efaab5",
-      main: "#dc425b",
-      dark: "#dd475f",
-      contrastText: "#2d2f30",
-    },
-    //  PINK
     error: {
       light: "#efaab5",
       main: "#dc425b",
       dark: "#dd475f",
       contrastText: "#2d2f30",
-    },
-    //  PINK
-    danger: {
-      light: "#efaab5",
-      main: "#dc425b",
-      dark: "#dd475f",
-      contrastText: "#2d2f30",
-    },
+    }
   },
 });
 

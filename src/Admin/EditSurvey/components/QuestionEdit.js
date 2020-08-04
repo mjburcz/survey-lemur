@@ -113,7 +113,7 @@ export default function QuestionEdit(props) {
     );
 
     copiedOptions.splice(index, 1);
-
+      // UPDATE STATE
     setQuestionOptions(copiedOptions);
   }
 

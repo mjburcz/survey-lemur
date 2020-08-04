@@ -87,6 +87,10 @@
   font-family: "Bookman Old Style" !important;
 }
 
+.MuiMenuItem-root {
+  font-family: "Bookman Old Style" !important;
+}
+
 .MuiAppBar-colorPrimary {
   background-color: #222425 !important;
 }

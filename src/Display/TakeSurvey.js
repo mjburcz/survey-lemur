@@ -67,12 +67,15 @@ export default function TakeSurvey() {
   const classes = useStyles();
 
   const [questions, setQuestions] = useState([]);
-
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     dataCall(GET_ALL_QUESTIONS)
-      .then(r => setQuestions(r.data.data.allQuestions));
+    // set all answers to be empty strings
+      .then(r => setQuestions(r.data.data.allQuestions.map(q => ({
+        ...q,
+        answer: ""
+      }))));
   }, []);
 
   function answerQuestion(answer, id) {

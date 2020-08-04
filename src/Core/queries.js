@@ -13,7 +13,7 @@ export const GET_ALL_QUESTIONS = `query{
   }`;
 
 export const ADD_NEW_QUESTION = `mutation{
-    createQuestion(answerType: "text") {
+    createQuestion(answerType: "single-line") {
         question {
             id
             text

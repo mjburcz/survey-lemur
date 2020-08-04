@@ -15,12 +15,6 @@ function SurveyResults() {
   const classes = useStyles();
   const [responses, setResponses] = useState([]);
 
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   useEffect(() => {
     dataCall(GET_RESPONSES).then((r) => {
       setResponses(

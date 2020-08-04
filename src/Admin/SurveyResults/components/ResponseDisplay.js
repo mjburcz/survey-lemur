@@ -59,10 +59,12 @@ const useStyles = makeStyles((theme) => ({
   question: {
     fontSize: "1.2rem",
     color: "#282c34",
+    textAlign: "start",
   },
   answer: {
     fontSize: "1.05rem",
     color: "#282c34",
+    textAlign: "start",
   },
   expand: {
     transform: "rotate(0deg)",

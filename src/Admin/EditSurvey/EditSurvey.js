@@ -15,7 +15,6 @@ import {
 } from "../../Core/queries";
 
 const useStyles = makeStyles((theme) => ({
-  
   fab: {
     "& > *": {
       margin: theme.spacing(1),
@@ -39,57 +38,6 @@ export default function EditSurvey() {
       setQuestions(r.data.data.allQuestions)
     );
   }, []);
-
-  function updateQuestion(text, type, required, options, id) {
-    // find the question that needs updating
-    let copiedQuestions = [...questions];
-
-    let index = copiedQuestions.findIndex((q) => q.id === id);
-
-    copiedQuestions[index] = {
-      ...copiedQuestions[index],
-      text: text,
-      answerType: type,
-      required: required,
-      questionoptionSet: options,
-      editing: !copiedQuestions[index].editing,
-    };
-    let order = copiedQuestions[index].order;
-
-    dataCall(
-      UPDATE_QUESTION.replace("$id", id)
-        .replace("$text", '"' + text + '"')
-        .replace("$required", required)
-        .replace("$answerType", '"' + type + '"')
-        .replace("$order", order)
-    );
-
-    if (type === "radio" || type === "dropdown") {
-      options.forEach((o) => {
-        dataCall(
-          UPDATE_QUESTION_OPTION.replace("$optionId", o.id).replace(
-            "$text",
-            '"' + o.text + '"'
-          )
-        );
-      });
-    }
-
-    setQuestions(copiedQuestions);
-  }
-
-  function toggleQuestionEditing(id) {
-    let copiedQuestions = [...questions];
-
-    let index = copiedQuestions.findIndex((q) => q.id === id);
-
-    copiedQuestions[index] = {
-      ...copiedQuestions[index],
-      editing: !copiedQuestions[index].editing,
-    };
-
-    setQuestions(copiedQuestions);
-  }
 
   function addNewQuestion() {
     dataCall(ADD_NEW_QUESTION).then((r) => {
@@ -160,6 +108,54 @@ export default function EditSurvey() {
       );
     });
 
+    setQuestions(copiedQuestions);
+  }
+
+  function toggleQuestionEditing(id) {
+    let copiedQuestions = [...questions];
+
+    let index = copiedQuestions.findIndex((q) => q.id === id);
+
+    copiedQuestions[index] = {
+      ...copiedQuestions[index],
+      editing: !copiedQuestions[index].editing,
+    };
+
+    setQuestions(copiedQuestions);
+  }
+
+  function updateQuestion(text, type, required, options, id) {
+    // find the question that needs updating
+    let copiedQuestions = [...questions];
+
+    let index = copiedQuestions.findIndex((q) => q.id === id);
+
+    copiedQuestions[index] = {
+      ...copiedQuestions[index],
+      text: text,
+      answerType: type,
+      required: required,
+      questionoptionSet: options,
+      editing: !copiedQuestions[index].editing,
+    };
+
+    dataCall(
+      UPDATE_QUESTION.replace("$id", id)
+        .replace("$text", '"' + text + '"')
+        .replace("$required", required)
+        .replace("$answerType", '"' + type + '"')
+        .replace("$order", copiedQuestions[index].order)
+    );
+
+    if (type === "radio" || type === "dropdown") {
+      options.forEach((o) => {
+        dataCall(
+          UPDATE_QUESTION_OPTION
+          .replace("$optionId", o.id).replace("$text",'"' + o.text + '"')
+        );
+      });
+    }
+    // UPDATE STATE
     setQuestions(copiedQuestions);
   }
 

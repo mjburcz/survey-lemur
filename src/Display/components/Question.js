@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: "1.2rem",
     display: "flex",
+    textAlign: "start",
   },
   option: {
     display: "inline-block",
