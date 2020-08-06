@@ -129,8 +129,8 @@ export default function TakeSurvey() {
       <div>
         <h1>Survey</h1>
         <br />
-        <Typography component="h5" variant="h5">
-          <p className="primary">Your survey has been successfully submitted! Thank you!</p>
+        <Typography component="h5" variant="h5" color="primary">
+          Your survey has been successfully submitted! Thank you!
         </Typography>
       </div>
     );
