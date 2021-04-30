@@ -11,10 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function SurveyResults() {
   const classes = useStyles();
   const [responses, setResponses] = useState([]);
 
+  //api call to get responses and set them so we can see them!
   useEffect(() => {
     dataCall(GET_RESPONSES).then((r) => {
       setResponses(

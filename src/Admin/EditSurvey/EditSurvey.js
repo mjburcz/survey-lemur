@@ -74,6 +74,7 @@ export default function EditSurvey() {
     setQuestions(copiedQuestions);
   }
 
+  //react-beatuiful-dnd implimentation & reorder of question number
   function onDragEnd(result) {
     const { destination, source, draggableId } = result;
 
@@ -112,15 +113,16 @@ export default function EditSurvey() {
   }
 
   function toggleQuestionEditing(id) {
+    //find the question that is being updated
     let copiedQuestions = [...questions];
 
     let index = copiedQuestions.findIndex((q) => q.id === id);
-
+    //update
     copiedQuestions[index] = {
       ...copiedQuestions[index],
       editing: !copiedQuestions[index].editing,
     };
-
+    //replace & set state
     setQuestions(copiedQuestions);
   }
 
@@ -150,8 +152,10 @@ export default function EditSurvey() {
     if (type === "radio" || type === "dropdown") {
       options.forEach((o) => {
         dataCall(
-          UPDATE_QUESTION_OPTION
-          .replace("$optionId", o.id).replace("$text",'"' + o.text + '"')
+          UPDATE_QUESTION_OPTION.replace("$optionId", o.id).replace(
+            "$text",
+            '"' + o.text + '"'
+          )
         );
       });
     }

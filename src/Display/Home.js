@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../images/logo-lemur.PNG";
+import logo from "../images/logo-lemur.png";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 

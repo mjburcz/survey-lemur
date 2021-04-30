@@ -3,8 +3,11 @@ import QuestionDisplay from "./QuestionDisplay";
 import QuestionEdit from "./QuestionEdit";
 import { Draggable } from "react-beautiful-dnd";
 
+//pass the props object to function
+//assign prop data from parent to be passed to which ever child component
 export default function Question(props) {
   let q = null;
+  //triggers question edit component
   if (props.question.editing) {
     q = (
       <QuestionEdit
@@ -15,6 +18,7 @@ export default function Question(props) {
       />
     );
   } else {
+     //triggers question display component
     q = (
       <QuestionDisplay
         question={props.question}
@@ -25,6 +29,7 @@ export default function Question(props) {
   }
 
   return (
+     //import to sort question list by click & drag
     <Draggable
       draggableId={"draggable-" + props.question.id}
       index={props.question.order}

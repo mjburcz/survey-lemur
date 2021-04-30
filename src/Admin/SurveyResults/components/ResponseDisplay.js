@@ -88,6 +88,7 @@ export default function ResponseDisplay(props) {
   let month = parsedDate.getMonth() + 1;
   let day = parsedDate.getDate();
 
+  //let's make the date readable here
   let formattedDate = `${month}/${day}/${year}`;
 
   return (

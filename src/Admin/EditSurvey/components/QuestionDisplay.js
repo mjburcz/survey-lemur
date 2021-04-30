@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//display question object data
 export default function QuestionDisplay(props) {
   const classes = useStyles();
   let optionsDisplay = null;

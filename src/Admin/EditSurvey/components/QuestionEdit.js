@@ -31,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     alignContent: "center",
     width: 600,
-    [theme.breakpoints.down("sm")] : {
-    maxWidth: 345
-    }
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: 345,
+    },
   },
   formControl: {
     margin: theme.spacing(1),
@@ -75,13 +75,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//setting initialState from inheriting parent prop up in here
 export default function QuestionEdit(props) {
   const classes = useStyles();
   const [questionText, setQuestionText] = useState(props.question.text);
   const [questionType, setQuestionType] = useState(props.question.answerType);
-  const [questionRequired, setQuestionRequired] = useState(props.question.required);
-  const [questionOptions, setQuestionOptions] = useState(props.question.questionoptionSet);
+  const [questionRequired, setQuestionRequired] = useState(
+    props.question.required
+  );
+  const [questionOptions, setQuestionOptions] = useState(
+    props.question.questionoptionSet
+  );
 
+  //call parent function to update the question
   function saveEdit() {
     props.updateQuestion(
       questionText,
@@ -92,6 +98,7 @@ export default function QuestionEdit(props) {
     );
   }
 
+  
   function addNewOption() {
     dataCall(
       ADD_QUESTION_OPTION.replace("$questionId", props.question.id)
@@ -103,6 +110,7 @@ export default function QuestionEdit(props) {
     });
   }
 
+  //delete question based on questionid
   function deleteOption(id) {
     let copiedOptions = [...questionOptions];
 
@@ -113,10 +121,11 @@ export default function QuestionEdit(props) {
     );
 
     copiedOptions.splice(index, 1);
-      // UPDATE STATE
+    //update state
     setQuestionOptions(copiedOptions);
   }
 
+  //manipulating the options and store changes for each question
   function editOption(text, id) {
     let copiedOptions = [...questionOptions];
 
